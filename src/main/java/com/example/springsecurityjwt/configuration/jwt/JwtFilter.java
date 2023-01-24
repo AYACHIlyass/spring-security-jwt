@@ -1,6 +1,7 @@
 package com.example.springsecurityjwt.configuration.jwt;
 
 import com.example.springsecurityjwt.db.repository.UserRepository;
+import com.example.springsecurityjwt.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

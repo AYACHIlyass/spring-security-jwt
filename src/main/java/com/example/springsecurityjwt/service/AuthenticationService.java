@@ -1,6 +1,5 @@
 package com.example.springsecurityjwt.service;
 
-import com.example.springsecurityjwt.configuration.jwt.JwtService;
 import com.example.springsecurityjwt.configuration.model.UserSecurity;
 import com.example.springsecurityjwt.db.entity.User;
 import com.example.springsecurityjwt.db.repository.UserRepository;

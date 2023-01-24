@@ -1,12 +1,11 @@
-package com.example.springsecurityjwt.configuration.jwt;
+package com.example.springsecurityjwt.service;
 
 import com.example.springsecurityjwt.configuration.model.UserSecurity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.impl.DefaultHeader;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,8 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    private String SECRET_KEY = "aGVsbDAgdGhpcyBzdHJpbmcgaXMgQCB0MHAgc2VjcmV0IHN0cmluZyB5MHUgd2lsbCBldmVyIHNlZSBpbiB1ciBsaWZlCg==";
+    @Value("${secret.key}")
+    private String SECRET_KEY;
 
     public String getUserEmail(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -35,7 +35,7 @@ public class JwtService {
         Instant now = Instant.now();
         return Jwts.
                 builder().
-//                setHeader(Map.of(Header.TYPE, Header.JWT_TYPE)).
+                setHeader(Map.of(Header.TYPE, Header.JWT_TYPE)).
                 setSubject(userSecurity.getUsername()).
                 setExpiration(Date.from(now.plus(1, ChronoUnit.DAYS))).
                 setIssuedAt(Date.from(now)).
